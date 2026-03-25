@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Patients</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+<h2>Pulse COS</h2>
+<ul>
+<li><a href="dashboard.html">Dashboard</a></li>
+<li class="active"><a href="patients.html">Patients</a></li>
+<li><a href="doctors.html">Doctors</a></li>
+<li><a href="appointments.html">Appointments</a></li>
+</ul>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+<h2>Patients</h2>
+
+<!-- Add Patient Button -->
+<button class="add-btn" onclick="window.location.href='add_patient.html'">
++ Add Patient
+</button>
+
+<!-- Search -->
+<input type="text" id="patientSearch" class="search" placeholder="Search patient...">
+
+<!-- Patient Cards -->
+<div class="card-grid" id="patientList"></div>
+
+</div>
+</div>
+
+<script>
+
+// Load Patients
+let patients = JSON.parse(localStorage.getItem("patients")) || [];
+let container = document.getElementById("patientList");
+
+function displayPatients(list){
+container.innerHTML = "";
+
+list.forEach((p, index) => {
+container.innerHTML += `
+<div class="patient-card">
+<h3>${p.name}</h3>
+<p>${p.disease}</p>
+<button class="delete-btn" onclick="deletePatient(${index})">Delete</button>
+</div>
+`;
+});
+}
+
+displayPatients(patients);
+
+// Delete Patient
+function deletePatient(index){
+patients.splice(index,1);
+localStorage.setItem("patients", JSON.stringify(patients));
+displayPatients(patients);
+}
+
+// Search Patient
+document.getElementById("patientSearch").addEventListener("keyup", function(){
+let value = this.value.toLowerCase();
+let filtered = patients.filter(p => 
+p.name.toLowerCase().includes(value) || 
+p.disease.toLowerCase().includes(value)
+);
+displayPatients(filtered);
+});
+
+</script>
+
+</body>
+</html>
+

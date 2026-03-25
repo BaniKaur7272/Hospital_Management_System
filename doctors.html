@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Doctors</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<div class="sidebar">
+<h2>Pulse COS</h2>
+<ul>
+<li><a href="dashboard.html">Dashboard</a></li>
+<li><a href="patients.html">Patients</a></li>
+<li class="active"><a href="doctors.html">Doctors</a></li>
+<li><a href="appointments.html">Appointments</a></li>
+</ul>
+</div>
+
+<div class="main">
+
+<h2>Doctors</h2>
+<button onclick="window.location.href='add_doctor.html'" class="add-btn">
++ Add Doctor
+</button>
+
+<input type="text" id="doctorSearch" class="search" placeholder="Search doctor...">
+
+<div class="filters">
+<button onclick="filterDoctors('all')">All</button>
+<button onclick="filterDoctors('available')">Available</button>
+<button onclick="filterDoctors('surgery')">In Surgery</button>
+</div>
+
+<div class="card-grid" id="doctorList">
+<input type="text" id="doctorSearch">
+
+
+
+</div>
+
+</div>
+</div>
+
+<script>
+
+let doctors = JSON.parse(localStorage.getItem("doctors")) || [];
+let container = document.getElementById("doctorList");
+
+function displayDoctors(list){
+container.innerHTML = "";
+
+list.forEach(d => {
+let statusColor = d.status === "Available" ? "green" : "red";
+
+container.innerHTML += `
+<div class="doctor-card">
+<h3>Dr. ${d.name}</h3>
+<p>${d.specialty}</p>
+<span class="status" style="background:${statusColor}">
+${d.status}
+</span>
+</div>
+`;
+});
+}
+
+displayDoctors(doctors);
+
+// Search
+document.getElementById("doctorSearch").addEventListener("keyup", function(){
+let value = this.value.toLowerCase();
+let filtered = doctors.filter(d => 
+d.name.toLowerCase().includes(value) ||
+d.specialty.toLowerCase().includes(value)
+);
+displayDoctors(filtered);
+});
+
+// Filter
+function filterDoctors(status){
+if(status === "all"){
+displayDoctors(doctors);
+} else {
+let filtered = doctors.filter(d => d.status === status);
+displayDoctors(filtered);
+}
+}
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Appointment</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+<!-- Sidebar -->
+<div class="sidebar">
+<h2>Pulse COS</h2>
+<ul>
+<li><a href="dashboard.html">Dashboard</a></li>
+<li><a href="patients.html">Patients</a></li>
+<li><a href="doctors.html">Doctors</a></li>
+<li><a href="appointments.html">Appointments</a></li>
+</ul>
+</div>
+
+<!-- Main Content -->
+<div class="main">
+<h2>Book Appointment</h2>
+
+<form id="appointmentForm" class="form">
+<input type="text" id="patient" placeholder="Patient Name" required>
+<input type="text" id="doctor" placeholder="Doctor Name" required>
+<input type="time" id="time" required>
+
+<select id="status">
+<option value="Scheduled">Scheduled</option>
+<option value="In Progress">In Progress</option>
+<option value="Completed">Completed</option>
+</select>
+
+<button type="submit">Add Appointment</button>
+</form>
+
+</div>
+</div>
+
+<script>
+document.getElementById("appointmentForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+let patient = document.getElementById("patient").value;
+let doctor = document.getElementById("doctor").value;
+let time = document.getElementById("time").value;
+let status = document.getElementById("status").value;
+
+// Get existing appointments
+let appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+
+// Add new appointment
+appointments.push({
+patient: patient,
+doctor: doctor,
+time: time,
+status: status
+});
+
+// Save back to localStorage
+localStorage.setItem("appointments", JSON.stringify(appointments));
+
+alert("Appointment Added Successfully!");
+
+// Redirect back
+window.location.href = "appointments.html";
+});
+</script>
+
+</body>
+</html>

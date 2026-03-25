@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Doctor</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+<div class="sidebar">
+<h2>Pulse COS</h2>
+<ul>
+<li><a href="dashboard.html">Dashboard</a></li>
+<li><a href="patients.html">Patients</a></li>
+<li><a href="doctors.html">Doctors</a></li>
+<li><a href="appointments.html">Appointments</a></li>
+</ul>
+</div>
+
+<div class="main">
+<h2>Add Doctor</h2>
+
+<form id="doctorForm" class="form">
+<input type="text" id="name" placeholder="Doctor Name" required>
+<input type="text" id="specialty" placeholder="Specialty" required>
+
+<select id="status">
+<option value="Available">Available</option>
+<option value="In Surgery">In Surgery</option>
+</select>
+
+<button type="submit">Add Doctor</button>
+</form>
+
+</div>
+</div>
+
+<script>
+document.getElementById("doctorForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+let name = document.getElementById("name").value;
+let specialty = document.getElementById("specialty").value;
+let status = document.getElementById("status").value;
+
+let doctors = JSON.parse(localStorage.getItem("doctors")) || [];
+
+doctors.push({name, specialty, status});
+
+localStorage.setItem("doctors", JSON.stringify(doctors));
+
+alert("Doctor Added!");
+window.location.href = "doctors.html";
+});
+</script>
+
+</body>
+</html>

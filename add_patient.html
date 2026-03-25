@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Add Patient</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard">
+<div class="sidebar">
+<h2>Pulse COS</h2>
+<ul>
+<li><a href="dashboard.html">Dashboard</a></li>
+<li><a href="patients.html">Patients</a></li>
+<li><a href="doctors.html">Doctors</a></li>
+<li><a href="appointments.html">Appointments</a></li>
+</ul>
+</div>
+
+<div class="main">
+<h2>Add Patient</h2>
+
+<form id="patientForm" class="form">
+<input type="text" id="name" placeholder="Patient Name" required>
+<input type="text" id="disease" placeholder="Disease" required>
+<button type="submit">Add Patient</button>
+</form>
+
+</div>
+</div>
+
+<script>
+document.getElementById("patientForm").addEventListener("submit", function(e){
+e.preventDefault();
+
+let name = document.getElementById("name").value;
+let disease = document.getElementById("disease").value;
+
+let patients = JSON.parse(localStorage.getItem("patients")) || [];
+
+patients.push({name, disease});
+
+localStorage.setItem("patients", JSON.stringify(patients));
+
+alert("Patient Added!");
+
+window.location.href = "patients.html";
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<title>Hospital Dashboard</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<h2>Pulse COS</h2>
+
+<ul>
+
+<ul>
+<li><a href="dashboard.html">🏠Dashboard</a></li>
+<li><a href="patients.html">🧑‍⚕️Patients</a></li>
+<li><a href="doctors.html">🩺Doctors</a></li>
+<li><a href="appointments.html">📅Appointments</a></li>
+</ul>
+</ul>
+
+</div>
+
+
+<!-- MAIN AREA -->
+
+<div class="main">
+
+<h2>Ward 4C Dashboard</h2>
+<div id="guestBadge" class="guest-badge" style="display:none;">
+👤 Guest Mode
+</div>
+
+<div class="stats">
+
+<div class="stat-box">
+<h3>2</h3>
+<p>Total Patients</p>
+</div>
+
+<div class="stat-box">
+<h3>33%</h3>
+<p>Bed Occupancy</p>
+</div>
+
+<div class="stat-box">
+<h3>5</h3>
+<p>Alerts</p>
+</div>
+
+<div class="stat-box">
+<h3>4</h3>
+<p>Staff On Duty</p>
+</div>
+
+</div>
+
+
+<!-- PATIENT CARDS -->
+
+<div class="patient-grid">
+
+<div class="patient-card">
+
+<h4>Arjun Sharma</h4>
+
+<p>Acute Myocardial Infarction</p>
+
+<div class="vitals">
+❤️ 112 bpm
+</div>
+
+<canvas id="ecgChart1"></canvas>
+
+</div>
+
+
+<div class="patient-card">
+
+<h4>Aisha Patel</h4>
+
+<p>Severe Pneumonia</p>
+
+<div class="vitals">
+❤️ 95 bpm
+</div>
+
+<canvas id="ecgChart2"></canvas>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="right-panel">
+<div class="ward-section">
+
+<h3>Ward Bed Status</h3>
+<div class="bed-grid">
+
+<div class="bed critical" title="Critical Patient">401</div>
+<div class="bed stable" title="Stable Patient">402</div>
+<div class="bed unstable" title="Unstable Patient">403</div>
+<div class="bed empty" title="Empty Bed">404</div>
+
+<div class="bed stable" title="Stable Patient">405</div>
+<div class="bed critical" title="Critical Patient">406</div>
+<div class="bed stable" title="Stable Patient">407</div>
+<div class="bed empty" title="Empty Bed">408</div>
+</div>
+</div>
+
+<div class="bed-legend">
+
+<span class="legend-item critical-box"></span> Critical
+
+<span class="legend-item unstable-box"></span> Unstable
+
+<span class="legend-item stable-box"></span> Stable
+
+<span class="legend-item empty-box"></span> Empty
+
+</div>
+<div class="staff-section">
+
+<h3>Staff On Duty</h3>
+
+<ul class="staff-list">
+
+<li>👨‍⚕️ Dr. Bani kaur</li>
+<li>👨‍⚕️ Dr. Simran kaur</li>
+<li>👩‍⚕️ Dr. Lisa Park</li>
+<li>👩‍⚕️ Nurse Mary Johnson</li>
+
+</ul>
+</div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+<script src="chart.js"></script>
+<script>
+const params = new URLSearchParams(window.location.search);
+const mode = params.get("mode");
+
+if(mode === "guest"){
+document.getElementById("guestBadge").style.display = "inline-block";
+}
+</script>
+
+</body>
+
+</html>
+
